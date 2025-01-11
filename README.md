@@ -1,12 +1,11 @@
-# پروژه امتحان‌ساز (در حال توسعه)
+# Laravel Project (In Development)
 
-🚧 **پروژه در حال توسعه است** 🚧  
-این پروژه هنوز کامل نشده و آماده استفاده در محیط تولید (Production) نیست. لطفاً از دانلود و استفاده از آن خودداری کنید.
+🚧 **Project Under Development** 🚧  
+This project is currently under development and is not ready for production use. Please do not download or use it at this time.
 
-## ابزارهای استفاده شده
--  Laravel
-- Tailwind CSS 
-- npm 
+## Technologies Used
+- Laravel
+- Tailwind CSS
+- npm
 
-## دستورالعمل نصب (فعلاً آماده نیست)
-به زودی اضافه خواهد شد...
+## Installation Instructions (Not Ready Yet)
