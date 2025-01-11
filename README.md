@@ -1,2 +1,11 @@
-# exambuilder
-A platform for creating, managing, and taking online exams. Built with **Laravel** and styled with **Tailwind CSS**, this project will allow users to create custom exams, manage questions, and track results. It will include features for user registration, authentication, and detailed reporting.
+# Laravel Project (In Development)
+
+🚧 **Project Under Development** 🚧  
+This project is currently under development and is not ready for production use. Please do not download or use it at this time.
+
+## Technologies Used
+- Laravel
+- Tailwind CSS
+- npm
+
+## Installation Instructions (Not Ready Yet)
