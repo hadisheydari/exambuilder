@@ -5,8 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University System Login</title>
     @vite('resources/css/app.css')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
+
 <body class="bg-gray-100">
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+        });
+    </script>
+@endif
+
+@if (session('wrong'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ session('wrong') }}',
+        });
+    </script>
+@endif
+
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="grid grid-cols-1 md:grid-cols-2">
@@ -39,13 +62,9 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
 
-                    <div class="mb-4">
-                        <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
-                        <input type="password" id="password" name="password" required class="@error('password') border-red-500 @enderror  w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Password">
-                    </div>
-                    @error('password')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+
+                    <x-password-input name="password" label="User Password" placeholder="Type your password here" />
+
 
                     <div class="mb-4">
                         <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">Login</button>
@@ -61,4 +80,5 @@
     </div>
 </div>
 </body>
+
 </html>
