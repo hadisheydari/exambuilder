@@ -31,11 +31,18 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // Use the validated data directly
-        User::create($request->validated());
+        $user = User::firstOrCreate(
+            ['email' => $request->email],
+            $request->validated()
+        );
 
-        // Redirect or return a response
-        return redirect()->route('dashboard')->with('success', 'کاربر با موفقیت ایجاد شد.');
+        if ($user->wasRecentlyCreated) {
+            return redirect()->route('dashboard')->with('success', 'User created successfully');
+        }
+
+        return redirect()->route('login')->with('wrong', 'User already exists');
+
+
     }
     /**
      * Display the specified resource.
@@ -81,7 +88,6 @@ class UserController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        // تولید کوکی امن برای احراز هویت
         $request->session()->regenerate();
 
         return redirect()->route('dashboard')->with('success', 'Login successful');

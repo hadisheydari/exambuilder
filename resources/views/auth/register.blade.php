@@ -58,29 +58,10 @@
                     @error('role')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
+                    <x-password-input name="password" label="User Password" placeholder="Type your password here" />
 
-                    <div class="mb-4 relative">
-                        <label for="password" class="@error('password') border-red-500 @enderror block text-gray-700 font-medium mb-2">Password</label>
+                    <x-password-input name="repetPassword" label="User Password" placeholder="Type your password here" />
 
-                        <input type="password" id="password" name="password" required
-                               class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                               placeholder="Password">
-
-                        <!-- Eye icon for showing/hiding password -->
-                        <span class="absolute inset-y-0 right-3 flex items-center cursor-pointer" onclick="togglePassword()">
-        <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8zm0 0c-2.485 0-4.5 2.015-4.5 4.5S9.515 15 12 15s4.5-2.015 4.5-4.5S14.485 6 12 6zm0 0c-1.36 0-2.5 1.14-2.5 2.5S10.64 11 12 11s2.5-1.14 2.5-2.5S13.36 6 12 6z"/>
-        </svg>
-    </span>
-                    </div>
-                    @error('password')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-
-                    <div class="mb-4">
-                        <label for="repetPassword" class="block text-gray-700 font-medium mb-2">Repeat Password</label>
-                        <input type="password" id="repetPassword" name="repetPassword" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Password">
-                    </div>
 
                     <div class="mb-4">
                         <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">Register</button>
@@ -101,23 +82,12 @@
         const pass2 = document.getElementById('repetPassword').value;
 
         if (pass1 !== pass2) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault();
             alert('Passwords do not match.');
         }
     });
 
 
-    function togglePassword() {
-        const passwordField = document.getElementById('password');
-        const eyeIcon = document.getElementById('eye-icon');
 
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            eyeIcon.setAttribute('d', 'M12 6c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8zm0 0c-2.485 0-4.5 2.015-4.5 4.5S9.515 15 12 15s4.5-2.015 4.5-4.5S14.485 6 12 6zm0 0c-1.36 0-2.5 1.14-2.5 2.5S10.64 11 12 11s2.5-1.14 2.5-2.5S13.36 6 12 6z');
-        } else {
-            passwordField.type = "password";
-            eyeIcon.setAttribute('d', 'M12 6c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8zm0 0c-2.485 0-4.5 2.015-4.5 4.5S9.515 15 12 15s4.5-2.015 4.5-4.5S14.485 6 12 6z');
-        }
-    }
 </script>
 </html>
