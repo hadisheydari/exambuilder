@@ -66,7 +66,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-blue-700">Users</h3>
+                        <h3 class=" text-lg font-semibold text-blue-700 ml-2">Users</h3>
                     </div>
                     <p class="mt-4 text-gray-600">Number of Users: <span class="font-bold">150</span></p>
                     <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">View</button>
