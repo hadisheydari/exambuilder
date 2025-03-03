@@ -11,7 +11,6 @@ class RoleMiddleware
 
     public function handle(Request $request, Closure $next, string $role)
     {
-        if (auth()->check() ) {
             if (auth()->user()->role === $role) {
                 return $next($request);
             }
@@ -19,7 +18,6 @@ class RoleMiddleware
                 return redirect()->route("403");
 
             }
-        }
-        return redirect()->route("register");
+
     }
 }
