@@ -8,6 +8,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="bg-gray-100">
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+        });
+    </script>
+@endif
+
+@if (session('wrong'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ session('wrong') }}',
+        });
+    </script>
+@endif
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="grid grid-cols-1 md:grid-cols-2">

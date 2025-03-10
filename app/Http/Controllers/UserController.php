@@ -37,13 +37,19 @@ class UserController extends Controller
         );
 
         if ($user->wasRecentlyCreated) {
-            return redirect()->route('dashboard')->with('success', 'User created successfully');
+            auth()->login($user);
+
+            if ($user->role === 'teacher') {
+                return redirect()->route('Teacher_dashboard')->with('success', 'User created successfully');
+            } elseif ($user->role === 'student') {
+                return redirect()->route('Student_dashboard')->with('success', 'User created successfully');
+            }
         }
 
         return redirect()->route('login')->with('wrong', 'User already exists');
-
-
     }
+
+
     /**
      * Display the specified resource.
      */
@@ -85,7 +91,8 @@ class UserController extends Controller
         ]);
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return redirect()->route('register')->with('wrong', 'Invalid credentials');
+
         }
 
         $request->session()->regenerate();
