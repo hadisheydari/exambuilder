@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Teacher;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class adminDashboard extends Component
+class teacher_asid extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class adminDashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin-dashboard');
+        return view('components.teacher.teacher_asid');
     }
 }
