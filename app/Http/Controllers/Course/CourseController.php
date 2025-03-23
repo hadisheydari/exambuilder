@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Course;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Course\StoreCourseRequest;
+use App\Http\Requests\Course\UpdateCourseRequest;
 use App\Models\Course;
-use App\Http\Requests\StoreCourseRequest;
-use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
@@ -13,7 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-
+        $courses = Course::paginate(10);
+        return view('Courses.index', compact('courses'));
     }
 
     /**

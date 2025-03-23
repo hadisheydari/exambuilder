@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Course\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RoleMiddleware;
@@ -22,8 +24,11 @@ Route::view('/error/403', 'Error.403')->name('403');
 Route::resource('User', UserController::class);
 
 Route::middleware([AuthUser::class])->group(function () {
-    Route::middleware([RoleMiddleware::class . ':teacher'])->prefix('teacher')->group(function () {
-        Route::view('/', 'Teacher.teacher_dashboard')->name('Teacher_dashboard');
+    Route::middleware([RoleMiddleware::class . ':teacher'])->group(function () {
+        Route::view('/teachers', 'Teacher.teacher_dashboard')->name('Teacher_dashboard');
+        Route::prefix('course')->group(function () {
+            Route::resource('courses', CourseController::class);
+        });
     });
 
     Route::middleware([RoleMiddleware::class . ':student'])->prefix('student')->group(function () {
