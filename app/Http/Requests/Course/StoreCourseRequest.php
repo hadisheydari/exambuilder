@@ -24,6 +24,7 @@ class StoreCourseRequest extends FormRequest
         return [
             'name'=> 'required|string',
             'description' => 'nullable|string',
+            'image' => 'nullable|mimes:jpeg,png,jpg|max:2048',
             'start_at'=>  'nullable|date',
             'end_at' =>'nullable|date',
         ];

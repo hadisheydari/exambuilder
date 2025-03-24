@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Course\StoreCourseRequest;
 use App\Http\Requests\Course\UpdateCourseRequest;
 use App\Models\Course;
+use http\Env\Request;
 
 class CourseController extends Controller
 {
@@ -23,15 +24,20 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('Courses.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(StoreCourseRequest $request)
     {
-        //
+
+        $validated = $request->validated();
+        $validated['image'] = $this->StoreImage($request);
+        Course::create($validated);
+        return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
 
     /**
@@ -65,4 +71,13 @@ class CourseController extends Controller
     {
         //
     }
+    private function StoreImage(StoreCourseRequest $request)
+    {
+        if ($request->hasFile('image')) {
+           return $request->file('image')->store('images/Courses', 'public');
+        }else{
+            return null ;
+        }
+    }
+
 }
