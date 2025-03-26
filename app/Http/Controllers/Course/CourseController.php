@@ -7,6 +7,7 @@ use App\Http\Requests\Course\StoreCourseRequest;
 use App\Http\Requests\Course\UpdateCourseRequest;
 use App\Models\Course;
 use http\Env\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -53,7 +54,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view('Courses.edit', compact('course'));
     }
 
     /**
@@ -61,7 +62,19 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $validated = $request->validated();
+
+        if ($request->hasFile()){
+            if ($course->image){
+                Storage::delete($course->image);
+            }
+            $validated['image'] = $this->StoreImage($request);
+
+        }else{
+            $validated['image'] = $course->image ;
+        }
+        Course::update($validated);
+        return redirect()->route('courses.index')->with('success', 'Course edited successfully');
     }
 
     /**

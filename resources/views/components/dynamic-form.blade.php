@@ -1,5 +1,8 @@
-<form action="{{$action}}" method="{{$method}}" class=" p-4 border rounded-lg shadow-lg  grid grid-cols-1 md:grid-cols-2 gap-4">
+<form action="{{$action}}" method="POST" enctype="multipart/form-data" class="p-4 border rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4">
     @csrf
+    @if ($method === 'PUT' || $method === 'PATCH')
+        @method($method)
+    @endif
     @foreach($fields as $field)
         <div class="flex flex-col">
             <label for="{{$field['name']}}" class="block text-gray-700 font-medium mb-2">
@@ -12,25 +15,36 @@
                     name="{{$field['name']}}"
                     class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="{{$field['placeholder'] ?? ''}}"
-                    value="{{ old($field['name'], $data[$field['name']] ?? '')}}"
+                    value="{{ old($field['name'], $field['value'] ?? '')}}"
                     {{$field['required'] ?? false ? 'required' : ''}}
+                    {{$field['readonly'] ?? false ? 'readonly' : ''}}
+
                 >
             @elseif ($field['type'] === 'textarea')
                 <textarea
                     id="{{ $field['name'] }}"
                     name="{{ $field['name'] }}"
                     class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 h-12"
-                    placeholder="{{ old($field['placeholder'] ?? '') }}"
-                    {{ $field['required'] ?? false ? 'required' : '' }}
-                ></textarea>
+                    placeholder="{{ old($field['placeholder'] ?? '', $field['value'] ?? '') }}"
+                     {{ $field['required'] ?? false ? 'required' : '' }}
+                    {{$field['readonly'] ?? false ? 'readonly' : ''}}
+
+                >    {{ old($field['name'], $field['value'] ?? '') }}
+                </textarea>
+
             @elseif ($field['type'] === 'file')
                 <input
                     type="file"
                     id="{{ $field['name'] }}"
                     name="{{ $field['name'] }}"
                     class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 file:bg-blue-500 file:text-white file:px-4 file:py-2 file:rounded-lg file:border-none"
+                    accept="image/jpeg, image/png, image/jpg"
+                    value="{{ $field['value']}}"
                     {{ $field['required'] ?? false ? 'required' : '' }}
                 >
+            @elseif ($field['type'] === 'img')
+
+            <img id="preview-{{ $field['name'] }}" src="" class="mt-2  w-40 h-40 object-cover rounded-lg border" />
 
             @elseif($field['type'] === 'date')
                 <input
@@ -40,7 +54,9 @@
                     class="datepicker   px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="{{$field['placeholder'] ?? ''}}"
                     autocomplete="off"
-                    value="{{ old($field['name'], $data[$field['name']] ?? '')}}"
+                    value="{{ old($field['name'], $field['value'] ?? '')}}"
+                    {{$field['readonly'] ?? false ? 'readonly' : ''}}
+
                 >
             @endif
             @error($field['name'])
