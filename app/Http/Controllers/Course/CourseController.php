@@ -37,6 +37,7 @@ class CourseController extends Controller
 
         $validated = $request->validated();
         $validated['image'] = $this->StoreImage($request);
+
         Course::create($validated);
         return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
@@ -46,7 +47,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return view('Courses.show', compact('course'));
+
     }
 
     /**
@@ -64,7 +66,7 @@ class CourseController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasFile()){
+        if ($request->hasFile('image')){
             if ($course->image){
                 Storage::delete($course->image);
             }
@@ -73,7 +75,8 @@ class CourseController extends Controller
         }else{
             $validated['image'] = $course->image ;
         }
-        Course::update($validated);
+        $course->update($validated);
+
         return redirect()->route('courses.index')->with('success', 'Course edited successfully');
     }
 
@@ -82,9 +85,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return redirect()->route('courses.index')->with('success', 'Course deleted successfully');
     }
-    private function StoreImage(StoreCourseRequest $request)
+    private function StoreImage( $request)
     {
         if ($request->hasFile('image')) {
            return $request->file('image')->store('images/Courses', 'public');

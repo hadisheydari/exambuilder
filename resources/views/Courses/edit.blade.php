@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Course Create')
+@section('title', 'Course Edit')
 @section('sidebar')
     <x-teacher.teacher_asid>
     </x-teacher.teacher_asid>
 @endsection
-@section('header','Create Course')
+@section('header','Edit Course')
 
 @section('content')
 
@@ -20,6 +20,8 @@
 
 
     ]"
+            :button="['type' => 'submit' , 'text' => 'Edit' ]"
+
             action="{{route('courses.update', $course->id) }}"
             method="PUT"
         />

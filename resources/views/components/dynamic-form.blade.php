@@ -39,12 +39,11 @@
                     name="{{ $field['name'] }}"
                     class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 file:bg-blue-500 file:text-white file:px-4 file:py-2 file:rounded-lg file:border-none"
                     accept="image/jpeg, image/png, image/jpg"
-                    value="{{ $field['value']}}"
                     {{ $field['required'] ?? false ? 'required' : '' }}
                 >
             @elseif ($field['type'] === 'img')
 
-            <img id="preview-{{ $field['name'] }}" src="" class="mt-2  w-40 h-40 object-cover rounded-lg border" />
+            <img id="preview-{{ $field['name'] }}" src="{{ asset('storage/'. $field['value'] ?? '') }}" class="mt-2  w-40 h-40 object-cover rounded-lg border" />
 
             @elseif($field['type'] === 'date')
                 <input
@@ -55,7 +54,7 @@
                     placeholder="{{$field['placeholder'] ?? ''}}"
                     autocomplete="off"
                     value="{{ old($field['name'], $field['value'] ?? '')}}"
-                    {{$field['readonly'] ?? false ? 'readonly' : ''}}
+                    {{$field['disabled'] ?? false ? 'disabled' : ''}}
 
                 >
             @endif
@@ -64,15 +63,13 @@
             @enderror
         </div>
     @endforeach
-    <button type="submit" class="w-60 bg-blue-500 text-white px-4 py-2 rounded-lg h-12 m-4">
-        submit
+    <button type="{{$button['type']}}" onclick="{{$button['action'] ?? ''}}" class="w-60 bg-blue-500 text-white px-4 py-2 rounded-lg h-12 m-4">
+        {{$button['text']}}
     </button>
 
 </form>
 <script>
     document.addEventListener("DOMContentLoaded" , function (){
-        flatpickr(".datepicker", {
-            dateFormat :'y-m-d',
-        })
+        flatpickr(".datepicker", {})
     });
 </script>

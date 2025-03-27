@@ -11,15 +11,13 @@ class DynamicForm extends Component
     public $fields ;
     public $action ;
     public $method ;
-    public $data ;
-
-
-    public function __construct($fields, $action='#', $method = 'POST' , $data =[])
+    public $button;
+    public function __construct($fields,  $action='#', $method = 'POST' , $button )
     {
         $this->fields =$fields;
         $this->action = $action;
         $this->method = strtoupper($method);
-        $this->data = $data;
+        $this->button = $button;
     }
 
     /**

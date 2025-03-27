@@ -20,6 +20,7 @@
 
 
     ]"
+            :button="['type' => 'submit' , 'text' => 'Create' ]"
             action="{{route('courses.store') }}"
             method="POST"
         />
