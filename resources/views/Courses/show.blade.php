@@ -24,6 +24,8 @@
 
             action="{{route('courses.show', $course->id) }}"
             method="GET"
+
+
         />
 
     </main>

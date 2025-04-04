@@ -28,6 +28,10 @@ Route::middleware([AuthUser::class])->group(function () {
         Route::view('/teachers', 'Teacher.teacher_dashboard')->name('Teacher_dashboard');
         Route::prefix('course')->group(function () {
             Route::resource('courses', CourseController::class);
+
+        });
+        Route::get('/Exam/create' , function (){
+            return view('Exam.create');
         });
     });
 

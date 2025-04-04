@@ -8,6 +8,8 @@ use App\Http\Requests\Course\UpdateCourseRequest;
 use App\Models\Course;
 use http\Env\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
+
 
 class CourseController extends Controller
 {
@@ -17,6 +19,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::paginate(10);
+
         return view('Courses.index', compact('courses'));
     }
 
@@ -64,6 +67,7 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
+
         $validated = $request->validated();
 
         if ($request->hasFile('image')){
@@ -85,7 +89,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        $course->delete();
+        if (Gate::allows('delete',$course)){
+            $course->delete();
+
+        }
         return redirect()->route('courses.index')->with('success', 'Course deleted successfully');
     }
     private function StoreImage( $request)
