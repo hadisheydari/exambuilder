@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
-            $table->string('title');
-            $table->integer('Max_Score')->default(20);
-            $table->integer('Max_Questions')->default(40);
+            $table->foreignId('exams_id')->constrained()->onDelete('cascade');
+            $table->enum('type', ['true_false', 'fill_blank' , 'descriptive']);
+            $table->text('questionText');
+            $table->integer('score');
+            $table->integer('order');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('questions');
     }
 };
