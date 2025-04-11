@@ -11,7 +11,7 @@ class StorequestionsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class StorequestionsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'exams_id'=> 'required|exists:exams,id',
+            'type'=> 'required|in:true_false, fill_blank ,descriptive',
+            'questionText'=> 'required|string',
+            'score'=>'required|numeric',
+            'order'=>'required|numeric',
+            'options'=>'nullable|array',
+            'options.*.type'=>'required|in:true_false, blank_answer',
+            'options.*.value'=>'nullable|string',
+            'options.*.is_correct'=>'nullable|boolean',
+            'keywords'=>'nullable|array',
+            'keywords.*'=>'string',
+
         ];
     }
 }

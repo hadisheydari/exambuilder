@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Course\CourseController;
+use App\Http\Controllers\Exam\ExamController;
+use App\Http\Controllers\QuestionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RoleMiddleware;
@@ -30,8 +32,10 @@ Route::middleware([AuthUser::class])->group(function () {
             Route::resource('courses', CourseController::class);
 
         });
-        Route::get('/Exam/create' , function (){
-            return view('Exam.create');
+        Route::prefix('Exams')->group(function () {
+            Route::resource('Exams', ExamController::class);
+            Route::post('Exams/{exam}/questions', [QuestionsController::class, 'store'])->name('Exams.questions');
+
         });
     });
 

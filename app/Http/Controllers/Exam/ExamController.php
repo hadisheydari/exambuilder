@@ -22,7 +22,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //
+        return view('Exam.create');
     }
 
     /**
@@ -30,7 +30,10 @@ class ExamController extends Controller
      */
     public function store(StoreExamRequest $request)
     {
-        //
+        $validated = $request->validated();
+        Exam::create($validated);
+        return redirect()->route('courses.index')->with('success', 'Course created successfully');
+
     }
 
     /**
