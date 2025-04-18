@@ -40,6 +40,9 @@
                                     class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition inline-block">
                                 <i class="fa fa-trash m-1"></i>Delete
                             </button>
+                            <button type="button" id="Exam"
+                               class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition inline-block"><i
+                                    class="fa fa-pen m-1"></i>Build Exam</button>
                         </form>
                     </div>
 
@@ -49,6 +52,9 @@
 
         </div>
     </main>
+
+@endsection
+@section('scripts')
 
 @endsection
 
