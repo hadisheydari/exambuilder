@@ -13,7 +13,7 @@
                     type="{{$field['type']}}"
                     id="{{$field['name']}}"
                     name="{{$field['name']}}"
-                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
                     placeholder="{{$field['placeholder'] ?? ''}}"
                     value="{{ old($field['name'], $field['value'] ?? '')}}"
                     {{$field['required'] ?? false ? 'required' : ''}}
@@ -31,7 +31,20 @@
 
                 >    {{ old($field['name'], $field['value'] ?? '') }}
                 </textarea>
+            @elseif($field['type'] === 'number'  )
+                 <input
+                        type="{{$field['type']}}"
+                        id="{{$field['name']}}"
+                        name="{{$field['name']}}"
+                        class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="{{$field['placeholder'] ?? ''}}"
+                        value="{{ old($field['name'], $field['value'] ?? '')}}"
+                        min="{{$field['min']}}"
+                        max="{{$field['max']}}"
+                        {{$field['required'] ?? false ? 'required' : ''}}
+                        {{$field['readonly'] ?? false ? 'readonly' : ''}}
 
+                    >
             @elseif ($field['type'] === 'file')
                 <input
                     type="file"

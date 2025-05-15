@@ -40,7 +40,7 @@
                                     class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition inline-block">
                                 <i class="fa fa-trash m-1"></i>Delete
                             </button>
-                            <button type="button" id="Exam"
+                            <button type="button" data-course-id="{{$course->id}}"
                                class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition inline-block"><i
                                     class="fa fa-pen m-1"></i>Build Exam</button>
                         </form>
@@ -49,6 +49,25 @@
                 </div>
 
             @endforeach
+            <div id="buildExamModal" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-50 ">
+                <div class="bg-white w-8/12 mx-auto mt-24 p-6 rounded-lg shadow-lg" >
+                    <x-dynamic-form
+                        :fields="[
+        ['name' => 'course_id', 'type' => 'text','value' => ''  , 'hidden' => true],
+        ['name' => 'teacher_id', 'type' => 'text','value' => user()->id() , 'hidden' => true],
+        ['name' => 'title', 'type' => 'text', 'label' => 'Title' , 'required' => true],
+        ['name' => 'Max_Score', 'type' => 'number', 'label' => 'Max_Score', 'min' => '1', 'max' => '100'],
+        ['name' => 'Max_Questions', 'type' => 'number', 'label' => 'Max_Questions', 'min' => '1', 'max' => '50']
+
+
+
+    ]"
+                        :button="['type' => 'submit' , 'text' => 'Create' ]"
+                        action="{{route('Exams.store') }}"
+                        method="POST"
+                    />
+                </div>
+            </div>
 
         </div>
     </main>

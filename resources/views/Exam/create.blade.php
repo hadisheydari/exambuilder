@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Course Create')
+@section('title', 'Exam Create')
 @section('sidebar')
     <x-teacher.teacher_asid>
     </x-teacher.teacher_asid>
 @endsection
-@section('header','Create Course')
+@section('header','Create Exam')
 
 @section('content')
 

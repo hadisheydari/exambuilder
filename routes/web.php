@@ -28,15 +28,13 @@ Route::resource('User', UserController::class);
 Route::middleware([AuthUser::class])->group(function () {
     Route::middleware([RoleMiddleware::class . ':teacher'])->group(function () {
         Route::view('/teachers', 'Teacher.teacher_dashboard')->name('Teacher_dashboard');
-        Route::prefix('course')->group(function () {
+
             Route::resource('courses', CourseController::class);
 
-        });
-        Route::prefix('Exams')->group(function () {
             Route::resource('Exams', ExamController::class);
+
             Route::post('Exams/{exam}/questions', [QuestionsController::class, 'store'])->name('Exams.questions');
 
-        });
     });
 
     Route::middleware([RoleMiddleware::class . ':student'])->prefix('student')->group(function () {
