@@ -40,7 +40,7 @@
                                     class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition inline-block">
                                 <i class="fa fa-trash m-1"></i>Delete
                             </button>
-                            <button type="button" data-course-id="{{$course->id}}"
+                            <button type="button" data-course-id="{{$course->id}}" onclick="openExamModal({{$course->id}})"
                                class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition inline-block"><i
                                     class="fa fa-pen m-1"></i>Build Exam</button>
                         </form>
@@ -75,5 +75,13 @@
 @endsection
 @section('scripts')
 
+    <script>
+        function openExamModal(courseId){
+            const modal = document.getElementById('buildExamModal');
+            modal.classList.remove('hidden');
+            modal.querySelector('input[name = "course_id"]').value = courseId ;
+
+        }
+    </script>
 @endsection
 
