@@ -49,12 +49,14 @@
                 </div>
 
             @endforeach
-            <div id="buildExamModal" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-50 ">
+            <div id="buildExamModal" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-50 hidden">
                 <div class="bg-white w-8/12 mx-auto mt-24 p-6 rounded-lg shadow-lg" >
+                    <button id="Close" class="fa fa-remove text-2xl text-gray-700 mb-1"></button>
+
                     <x-dynamic-form
                         :fields="[
-        ['name' => 'course_id', 'type' => 'text','value' => ''  , 'hidden' => true],
-        ['name' => 'teacher_id', 'type' => 'text','value' => user()->id() , 'hidden' => true],
+        ['name' => 'course_id', 'type' => 'text' , 'hidden' => true],
+        ['name' => 'teacher_id', 'type' => 'text','value' => auth()->id() , 'hidden' => true],
         ['name' => 'title', 'type' => 'text', 'label' => 'Title' , 'required' => true],
         ['name' => 'Max_Score', 'type' => 'number', 'label' => 'Max_Score', 'min' => '1', 'max' => '100'],
         ['name' => 'Max_Questions', 'type' => 'number', 'label' => 'Max_Questions', 'min' => '1', 'max' => '50']
@@ -79,8 +81,17 @@
         function openExamModal(courseId){
             const modal = document.getElementById('buildExamModal');
             modal.classList.remove('hidden');
-            modal.querySelector('input[name = "course_id"]').value = courseId ;
+            const input = modal.querySelector('input[name="course_id"]');
+            console.log('befor' , input);
+            console.log('value' , courseId);
 
+            input.value = courseId;
+            console.log('after' , input);
+
+
+        }
+        document.getElementById('Close').onclick = function () {
+            document.getElementById('buildExamModal').classList.add('hidden');
         }
     </script>
 @endsection
