@@ -55,7 +55,7 @@
 
                     <x-dynamic-form
                         :fields="[
-        ['name' => 'course_id', 'type' => 'text' , 'hidden' => true],
+        ['name' => 'course_id', 'type' => 'text' ,'value' => '' ,  'hidden' => true],
         ['name' => 'teacher_id', 'type' => 'text','value' => auth()->id() , 'hidden' => true],
         ['name' => 'title', 'type' => 'text', 'label' => 'Title' , 'required' => true],
         ['name' => 'Max_Score', 'type' => 'number', 'label' => 'Max_Score', 'min' => '1', 'max' => '100'],
