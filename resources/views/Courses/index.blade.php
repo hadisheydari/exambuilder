@@ -90,17 +90,14 @@
             modal.classList.remove('hidden');
 
             const courseId = button.dataset.courseId;
+            const input = modal.querySelector('input[name="course_id"]');
 
-            setTimeout(() => {
-                const input = document.querySelector('#buildExamModal input[name="course_id"]');
-
-                if (input) {
-                    input.value = courseId;
-                    console.log("course_id set to:", input.value);
-                } else {
-                    console.error('course_id input not found!');
-                }
-            }, 100); // 100ms تاخیر برای اطمینان از اینکه DOM کامل رندر شده
+            if (input) {
+                input.value = courseId;
+                console.log("course_id set to:", input.value);
+            } else {
+                console.error('course_id input not found!');
+            }
         }
 
         document.getElementById('modalCloseBtn').addEventListener('click', function () {

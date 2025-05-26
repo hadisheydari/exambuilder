@@ -23,7 +23,7 @@ class StoreExamRequest extends FormRequest
     {
         return [
             'course_id'=> 'required|exists:courses,id',
-            'teacher_id'=> 'required|exists:teachers,id',
+            'teacher_id'=> 'required|exists:users,id',
             'title'=> 'required|string',
             'Max_Score'=>'required|numeric',
             'Max_Questions'=>'required|numeric',
