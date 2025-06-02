@@ -10,17 +10,20 @@
 
 
     <main class="flex-1 p-6">
+        @php
+            $fields = [
+                 ['name' => 'name', 'type' => 'text', 'label' => 'name', 'required' => true],
+                 ['name' => 'description', 'type' => 'textarea', 'label' => 'description'],
+                 ['name' => 'image', 'type' => 'file', 'label' => 'image'],
+                 ['name' => 'start_at', 'type' => 'date', 'label' => 'Start At', 'placeholder' => 'Choose'],
+                 ['name' => 'end_at', 'type' => 'date', 'label' => 'End At', 'placeholder' => 'Choose']
+            ];
+
+            $button = ['type' => 'submit' , 'text' => 'Create' ];
+        @endphp
         <x-dynamic-form
-            :fields="[
-        ['name' => 'name', 'type' => 'text', 'label' => 'name', 'required' => true],
-        ['name' => 'description', 'type' => 'textarea', 'label' => 'description'],
-        ['name' => 'image', 'type' => 'file', 'label' => 'image'],
-        ['name' => 'start_at', 'type' => 'date', 'label' => 'Start At', 'placeholder' => 'Choose'],
-        ['name' => 'end_at', 'type' => 'date', 'label' => 'End At', 'placeholder' => 'Choose']
-
-
-    ]"
-            :button="['type' => 'submit' , 'text' => 'Create' ]"
+            :fields="$fields"
+            :button="$button"
             action="{{route('courses.store') }}"
             method="POST"
         />
