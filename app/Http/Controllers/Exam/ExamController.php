@@ -31,8 +31,8 @@ class ExamController extends Controller
     public function store(StoreExamRequest $request)
     {
         $validated = $request->validated();
-        Exam::create($validated);
-        return redirect()->route('courses.index')->with('success', 'Course created successfully');
+        $exam = Exam::create($validated);
+        return view('Exam.create' , compact('exam'))->with('success', 'Course created successfully');
 
     }
 

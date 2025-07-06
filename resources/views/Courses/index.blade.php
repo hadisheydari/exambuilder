@@ -16,6 +16,7 @@
         </a>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
             @foreach($courses as $course)
                 <div class="p-6 bg-white shadow-lg rounded-lg">
                     <div class="flex items-center space-x-reverse space-x-4">
