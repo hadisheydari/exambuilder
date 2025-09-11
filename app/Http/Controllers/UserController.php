@@ -6,7 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Services\AuthService;
 
 class UserController extends Controller
 {
@@ -31,23 +31,18 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = User::firstOrCreate(
-            ['email' => $request->email],
-            $request->validated()
-        );
 
-        if ($user->wasRecentlyCreated) {
-            auth()->login($user);
-
-            if ($user->role === 'teacher') {
-                return redirect()->route('Teacher_dashboard')->with('success', 'User created successfully');
-            } elseif ($user->role === 'student') {
-                return redirect()->route('Student_dashboard')->with('success', 'User created successfully');
-            }
-        }
-
-        return redirect()->route('login')->with('wrong', 'User already exists');
+        $authService = new AuthService();
+        $result = $authService->register($request->validated());
+        return match ($result['status']) {
+            'created' => match($result['role']){
+                'teacher' => redirect()->route('Teacher_dashboard'),
+                'student' => redirect()->route('Student_dashboard'),
+            },
+            'exist'=>redirect()->route('login')->with('wrong', 'User already exists'),
+        };
     }
+
 
 
     /**
