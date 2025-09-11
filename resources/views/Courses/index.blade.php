@@ -63,28 +63,34 @@
         <!-- Modal -->
         <div id="buildExamModal" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-50 hidden">
             <div class="bg-white w-10/12 md:w-8/12 lg:w-6/12 mx-auto mt-24 p-6 rounded-lg shadow-lg relative">
-                <button id="modalCloseBtn" class="absolute top-4 right-4 text-2xl text-gray-700 ">
+
+                {{-- دکمه بستن - بیرون فرم --}}
+                <button id="modalCloseBtn" type="button"
+                        class="absolute top-4 right-4 text-2xl text-gray-700 hover:text-red-500">
                     <i class="fa fa-close"></i>
                 </button>
-                @php
-                    $fields = [
-                        ['name' => 'course_id', 'type' => 'text', 'value' => '', 'hidden' => true],
-                        ['name' => 'teacher_id', 'type' => 'text', 'value' => auth()->id(), 'hidden' => true],
-                        ['name' => 'title', 'type' => 'text', 'label' => 'Title', 'required' => true],
-                        ['name' => 'Max_Score', 'type' => 'number', 'label' => 'Max Score', 'min' => '1', 'max' => '100'],
-                        ['name' => 'Max_Questions', 'type' => 'number', 'label' => 'Max Questions', 'min' => '1', 'max' => '50'],
-                    ];
 
-                    $button = ['type' => 'submit', 'text' => 'Create'];
-                @endphp
+                {{-- محتوای فرم --}}
+                <div class="mt-8">
+                    @php
+                        $fields = [
+                            ['name' => 'course_id', 'type' => 'text', 'value' => '', 'hidden' => true],
+                            ['name' => 'teacher_id', 'type' => 'text', 'value' => auth()->id(), 'hidden' => true],
+                            ['name' => 'title', 'type' => 'text', 'label' => 'Title', 'required' => true],
+                            ['name' => 'Max_Score', 'type' => 'number', 'label' => 'Max Score', 'min' => '1', 'max' => '100'],
+                            ['name' => 'Max_Questions', 'type' => 'number', 'label' => 'Max Questions', 'min' => '1', 'max' => '50'],
+                        ];
 
-                <x-dynamic-form
-                    :fields="$fields"
-                    :button="$button"
-                    action="{{ route('Exams.store') }}"
-                    method="POST"
-                />
+                        $button = ['type' => 'submit', 'text' => 'Create'];
+                    @endphp
 
+                    <x-dynamic-form
+                        :fields="$fields"
+                        :button="$button"
+                        action="{{ route('Exams.store') }}"
+                        method="POST"
+                    />
+                </div>
             </div>
         </div>
     </main>

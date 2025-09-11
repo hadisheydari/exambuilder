@@ -1,58 +1,64 @@
 @extends('layouts.app')
 @section('title', 'Exam Create')
 @section('sidebar')
-    <x-teacher.teacher_asid>
-    </x-teacher.teacher_asid>
+    <x-teacher.teacher_asid/>
 @endsection
 @section('header','Create Exam')
 
 @section('content')
-
     <main class="flex-1 p-6">
+        <!-- Overlay -->
         <div id="ModalOverlay"
-             class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-50 hidden transition-opacity duration-300">
+             class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 ease-out">
 
+            <!-- Modal -->
             <div id="Modal"
-                 class="bg-slate-50  h-35 grid place-items-center grid-cols-3 gap-4 p-4 m-1 rounded-lg border-2 ">
-                <p class="text-2xl text-gray-700 col-span-2">Choose type of question</p>
-                <button id="Close" class="fa fa-remove text-2xl text-gray-700"></button>
+                 class="relative bg-white w-11/12 max-w-lg mx-auto mt-24 rounded-2xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-out">
 
-                <div class="col-span-3 grid grid-cols-3 gap-4">
-                    <button id="true-false" class="fa fa-check p-3 m-1 border rounded-lg hover:bg-gray-300"> True /
-                        False
+                <!-- Header -->
+                <div class="flex justify-between items-center border-b px-6 py-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Choose Question Type</h3>
+                    <button id="Close"
+                            class="text-gray-400 hover:text-gray-600 transition text-2xl">
+                        <i class="fa fa-times"></i>
                     </button>
-                    <button id="blank" class="fa fa-ellipsis-h p-3 m-1 border rounded-lg hover:bg-gray-300"> Fill in the
-                        Blank
+                </div>
+
+                <!-- Content -->
+                <div class="grid grid-cols-3 gap-4 p-6">
+                    <button onclick="typeSelection('true-false')" id="true-false"
+                            class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 shadow-sm hover:bg-green-50 hover:shadow-md transition">
+                        <i class="fa fa-check text-green-600 text-xl"></i>
+                        <span class="text-sm font-medium text-gray-700">True / False</span>
                     </button>
-                    <button id="descriptive" class="fa fa-edit p-3 m-1 border rounded-lg hover:bg-gray-300">
-                        Descriptive
+
+                    <button onclick="typeSelection('blank')" id="blank"
+                            class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 shadow-sm hover:bg-blue-50 hover:shadow-md transition">
+                        <i class="fa fa-ellipsis-h text-blue-600 text-xl"></i>
+                        <span class="text-sm font-medium text-gray-700">Fill in Blank</span>
+                    </button>
+
+                    <button onclick="typeSelection('descriptive')" id="descriptive"
+                            class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 shadow-sm hover:bg-purple-50 hover:shadow-md transition">
+                        <i class="fa fa-edit text-purple-600 text-xl"></i>
+                        <span class="text-sm font-medium text-gray-700">Descriptive</span>
                     </button>
                 </div>
             </div>
         </div>
 
-
-        <form action="#" method="POST" enctype="multipart/form-data"
-              class="p-4 border rounded-lg shadow-lg grid place-items-center ">
-
-            <div class="w-full h-35 grid place-items-center justify-center">
-                <button type="button" id="AddQuestion" class="fa fa-plus-circle text-2xl text-gray-700 "></button>
+        <!-- Form -->
+        <form id="typeForm" action="#" method="POST" enctype="multipart/form-data"
+              class="p-4 border rounded-lg shadow-lg grid place-items-center">
+            <div class="w-full h-35 grid place-items-center">
+                <button type="button" id="AddQuestion"
+                        class="fa fa-plus-circle text-4xl text-indigo-600 hover:text-indigo-800 transition"></button>
             </div>
             @csrf
         </form>
-
     </main>
-
 @endsection
+
 @section('scripts')
-    <script>
-        document.getElementById('AddQuestion').onclick = function () {
-            this.classList.add('!hidden');
-            document.getElementById('ModalOverlay').classList.remove('hidden');
-        }
-        document.getElementById('Close').onclick = function () {
-            document.getElementById('ModalOverlay').classList.add('hidden');
-            document.getElementById('AddQuestion').classList.remove('!hidden');
-        }
-    </script>
+    <script src="{{ asset('js/exam/examMethods.js') }}"></script>
 @endsection
