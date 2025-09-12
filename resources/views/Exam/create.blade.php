@@ -8,6 +8,12 @@
 @section('content')
     <main class="flex-1 p-6">
         <!-- Overlay -->
+        <div class="bg-white w-11/12   flex justify-self-center justify-around m-4 p-4 align-middle rounded-2xl shadow-2xl">
+            <h2 class="text-xl font-semibold text-blue-700">Max Score : {{$exam->Max_Score?? ''}}</h2>
+            <h2 class="text-xl font-semibold text-blue-700">Exam Title : {{$exam->title ?? ''}}</h2>
+            <h2 class="text-xl font-semibold text-blue-700">Max Questions : {{$exam->Max_Questions}}</h2>
+
+        </div>
         <div id="ModalOverlay"
              class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 ease-out">
 
