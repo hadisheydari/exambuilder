@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('exams_id')->constrained()->onDelete('cascade');
             $table->enum('type', ['true_false', 'fill_blank' , 'descriptive']);
             $table->text('questionText');
-            $table->integer('score');
+            $table->text('questionText2');
+            $table->decimal('score');
             $table->integer('order');
             $table->timestamps();
         });

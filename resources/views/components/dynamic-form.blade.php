@@ -3,12 +3,15 @@
     @if ($method === 'PUT' || $method === 'PATCH')
         @method($method)
     @endif
-    @foreach($fields as $field)
+    {{ $slot }}
+
+@foreach($fields as $field)
         <div class="flex flex-col">
             <label for="{{$field['name']}}" class="block text-gray-700 font-medium mb-2 {{$field['hidden'] ?? false ? 'hidden' : ''}}">
                 {{$field['label'] ?? ucfirst($field['name'])}}
             </label>
-            @if($field['type'] === 'text' || $field['type'] === 'email' )
+
+        @if($field['type'] === 'text' || $field['type'] === 'email' )
                 <input
                     type="{{$field['type']}}"
                     id="{{$field['name']}}"

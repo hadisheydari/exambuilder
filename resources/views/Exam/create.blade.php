@@ -7,13 +7,144 @@
 
 @section('content')
     <main class="flex-1 p-6">
-        <!-- Overlay -->
-        <div class="bg-white w-11/12   flex justify-self-center justify-around m-4 p-4 align-middle rounded-2xl shadow-2xl">
-            <h2 class="text-xl font-semibold text-blue-700">Max Score : {{$exam->Max_Score?? ''}}</h2>
-            <h2 class="text-xl font-semibold text-blue-700">Exam Title : {{$exam->title ?? ''}}</h2>
-            <h2 class="text-xl font-semibold text-blue-700">Max Questions : {{$exam->Max_Questions}}</h2>
+        <!-- Card -->
+        <div class="bg-white w-11/12 mx-auto m-6 p-6 rounded-2xl shadow-2xl">
+            <div class="flex flex-col space-y-8">
 
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                    <h2 class="text-lg font-semibold text-blue-700">
+                        Max Score:
+                        <span class="font-normal text-gray-700">{{$exam->Max_Score ?? ''}}</span>
+                    </h2>
+
+                    <h2 class="text-lg font-semibold text-blue-700">
+                        Exam Title:
+                        <span class="font-normal text-gray-700">{{$exam->title ?? ''}}</span>
+                    </h2>
+
+                    <h2 class="text-lg font-semibold text-blue-700">
+                        Max Questions:
+                        <span class="font-normal text-gray-700">{{$exam->Max_Questions ?? ''}}</span>
+                    </h2>
+
+                    <!-- اینجا دوتا آیتم پایینی -->
+                    <div class="md:col-span-3 flex justify-center gap-12 ">
+                        <h2 class="text-lg font-semibold text-blue-700 mr-10 mt-5">
+                            Left Questions:
+                            <span class="font-normal text-gray-700">
+                {{ $exam->Max_Questions - ($q?->sum('score') ?? 1) }}
+            </span>
+                        </h2>
+
+                        <h2 class="text-lg font-semibold text-blue-700 ml-10 mt-5">
+                            Another Info:
+                            <span class="font-normal text-gray-700">19.5</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <hr class="border-t border-gray-300">
+                <div class=" grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex flex-col ">
+                        <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                            Question Text
+                        </label>
+                        <p
+                            id="questionText"
+                            class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                        >this is a test Question Text for true false</p>
+                    </div>
+                    <div class="flex justify-around">
+                        <div class="flex items-center justify-around w-2/3 ps-4">
+                            <!-- True -->
+                            <div class="flex flex-col items-center me-4">
+                                <label for="true-option" class="mb-1 text-sm font-medium text-gray-900">True</label>
+                                <input id="true-option" type="radio" value="true" name="is_correct"
+                                       class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            </div>
+
+                            <!-- False -->
+                            <div class="flex flex-col items-center">
+                                <label for="false-option" class="mb-1 text-sm font-medium text-gray-900">False</label>
+                                <input id="false-option" type="radio" value="false" name="is_correct" checked
+                                       class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col w-1/4 mx-4">
+                            <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                                Question Score
+                            </label>
+                            <p
+                                id="questionText"
+                                class="  px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+
+                            >0.5</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- فرم -->
+                <div>
+                    @php
+                        $fields = [
+
+                        ];
+                        $button = ['type' => 'submit', 'text' => 'Create'];
+                    @endphp
+                    <x-dynamic-form
+                        :fields="$fields"
+                        :button="$button"
+                        action="{{ route('courses.store') }}"
+                        method="POST"
+                    >
+
+                        <div class="flex flex-col">
+                            <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                               Question Text
+                            </label>
+                            <input
+                                type="text"
+                                id="questionText"
+                                name="questionText"
+                                class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                                placeholder="text"
+                            >
+                        </div>
+                        <div class="flex justify-around ">
+                            <div class="flex items-center justify-around w-2/3 ps-4 border border-gray-200 rounded-lg dark:border-gray-700">
+                                <div class="flex items-center me-4">
+                                    <input id="true-option" type="radio" value="true" name="is_correct"
+                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="true-option" class="ms-2 text-sm font-medium text-gray-900">True</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input id="false-option" type="radio" value="false" name="is_correct" checked
+                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="false-option" class="ms-2 text-sm font-medium text-gray-900">False</label>
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-1/4 mx-4">
+                                <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                                    Question Score
+                                </label>
+                                <input
+                                    type="number"
+                                    id="questionText"
+                                    name="questionText"
+                                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                                    placeholder="score"
+                                    step="2"
+                                >
+                            </div>
+                        </div>
+
+
+                    </x-dynamic-form>
+                </div>
+            </div>
         </div>
+
         <div id="ModalOverlay"
              class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 ease-out">
 

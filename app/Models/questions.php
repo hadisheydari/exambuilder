@@ -14,6 +14,7 @@ class questions extends Model
         'exams_id',
         'type',
         'questionText',
+        'questionText2',
         'score',
         'order',
     ];
