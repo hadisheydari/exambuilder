@@ -27,13 +27,10 @@
                         <span class="font-normal text-gray-700">{{$exam->Max_Questions ?? ''}}</span>
                     </h2>
 
-                    <!-- اینجا دوتا آیتم پایینی -->
                     <div class="md:col-span-3 flex justify-center gap-12 ">
                         <h2 class="text-lg font-semibold text-blue-700 mr-10 mt-5">
                             Left Questions:
-                            <span class="font-normal text-gray-700">
-                {{ $exam->Max_Questions - ($q?->sum('score') ?? 1) }}
-            </span>
+                            <span class="font-normal text-gray-700">{{ $exam->Max_Questions - ($q?->sum('score') ?? 1) }}</span>
                         </h2>
 
                         <h2 class="text-lg font-semibold text-blue-700 ml-10 mt-5">
@@ -44,47 +41,52 @@
                 </div>
 
                 <hr class="border-t border-gray-300">
-                <div class=" grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex flex-col ">
-                        <label for="input" class="block text-gray-700 font-medium mb-2 ">
-                            Question Text
-                        </label>
-                        <p
-                            id="questionText"
-                            class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
-                        >this is a test Question Text for true false</p>
-                    </div>
-                    <div class="flex justify-around">
-                        <div class="flex items-center justify-around w-2/3 ps-4">
-                            <!-- True -->
-                            <div class="flex flex-col items-center me-4">
-                                <label for="true-option" class="mb-1 text-sm font-medium text-gray-900">True</label>
-                                <input id="true-option" type="radio" value="true" name="is_correct"
-                                       class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                            </div>
 
-                            <!-- False -->
-                            <div class="flex flex-col items-center">
-                                <label for="false-option" class="mb-1 text-sm font-medium text-gray-900">False</label>
-                                <input id="false-option" type="radio" value="false" name="is_correct" checked
-                                       class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex justify-around col-span-2  border border-blue-200 rounded-lg shadow-sm p-4">
+                        <div class="flex flex-col w-4/6 mx-4">
+                            <label for="input" class="block text-gray-700 font-semibold mb-2">
+                                Question Text
+                            </label>
+                            <p
+                                id="questionText"
+                                class="px-4 py-3 text-gray-800 bg-white border border-gray-300 rounded-md shadow-sm leading-relaxed {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                            >
+                                Fill in the blank:
+                                The capital of France is <span class="border-b-2 border-dashed border-blue-400 px-8 inline-block"></span>
+                                this is a test question Text for blank aswer type question
+
+                                .
+                            </p>
                         </div>
 
-                        <div class="flex flex-col w-1/4 mx-4">
-                            <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                        <div class="flex flex-col w-2/6 mx-4">
+                            <label for="blank-answer" class="block text-gray-700 font-semibold mb-2">
+                                Blank Answer
+                            </label>
+                            <input
+                                type="text"
+                                id="blank-answer"
+                                name="blank-answer"
+                                class="px-4 py-2 border border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                                placeholder="Type your answer..."
+                            >
+                            <label for="input" class="block text-gray-700 font-medium mb-2  mt-4 ">
                                 Question Score
                             </label>
                             <p
                                 id="questionText"
-                                class="  px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                                class="  px-4 py-2  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
 
                             >0.5</p>
                         </div>
+
                     </div>
+
+
                 </div>
 
-                <!-- فرم -->
+
                 <div>
                     @php
                         $fields = [
@@ -99,31 +101,50 @@
                         method="POST"
                     >
 
-                        <div class="flex flex-col">
-                            <label for="input" class="block text-gray-700 font-medium mb-2 ">
-                               Question Text
-                            </label>
-                            <input
-                                type="text"
-                                id="questionText"
-                                name="questionText"
-                                class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
-                                placeholder="text"
-                            >
-                        </div>
-                        <div class="flex justify-around ">
-                            <div class="flex items-center justify-around w-2/3 ps-4 border border-gray-200 rounded-lg dark:border-gray-700">
-                                <div class="flex items-center me-4">
-                                    <input id="true-option" type="radio" value="true" name="is_correct"
-                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="true-option" class="ms-2 text-sm font-medium text-gray-900">True</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input id="false-option" type="radio" value="false" name="is_correct" checked
-                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="false-option" class="ms-2 text-sm font-medium text-gray-900">False</label>
-                                </div>
+                        <div class=" flex justify-around  col-span-2 ">
+                            <div class="flex flex-col w-4/6 mx-4">
+                                <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                                    Question Text
+                                </label>
+                                <textarea
+                                    id="questionText"
+                                    name="questionText"
+                                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                                    placeholder="text"
+                                >
+
+                              </textarea>
                             </div>
+
+                            <div class="flex flex-col w-2/6 mx-4">
+                                <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                                    Blank Answer
+                                </label>
+                                <input
+                                    type="text"
+                                    id="blank-answer"
+                                    name="blank-answer"
+                                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                                    placeholder="Blank Answer"
+                                >
+                            </div>
+
+                        </div>
+                        <div class=" flex justify-around  col-span-2 ">
+                            <div class="flex flex-col w-3/4 mx-4">
+                                <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                                    Continue Question
+                                </label>
+                                <textarea
+                                    id="questionText"
+                                    name="questionText"
+                                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                                    placeholder="text"
+                                >
+
+                              </textarea>
+                            </div>
+
                             <div class="flex flex-col w-1/4 mx-4">
                                 <label for="input" class="block text-gray-700 font-medium mb-2 ">
                                     Question Score
@@ -137,6 +158,7 @@
                                     step="2"
                                 >
                             </div>
+
                         </div>
 
 
