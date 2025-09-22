@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('key_words', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->string('key_word');
             $table->timestamps();
         });

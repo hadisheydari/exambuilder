@@ -31,8 +31,8 @@ Route::middleware([AuthUser::class])->group(function () {
 
             Route::resource('courses', CourseController::class);
 
-            Route::resource('Exams', ExamController::class);
-
+            Route::resource('Exams', ExamController::class)->except('create');
+            Route::get('Exams/create/{exam}', [ExamController::class, 'create'])->name('Exams.create');
             Route::post('Exams/{exam}/questions', [QuestionsController::class, 'store'])->name('Exams.questions');
 
     });

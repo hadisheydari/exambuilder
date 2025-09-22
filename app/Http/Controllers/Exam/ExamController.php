@@ -20,9 +20,10 @@ class ExamController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Exam $exam)
     {
-        return view('Exam.create');
+
+        return view('Exam.create' , compact('exam'));
     }
 
     /**
@@ -32,7 +33,7 @@ class ExamController extends Controller
     {
         $validated = $request->validated();
         $exam = Exam::create($validated);
-        return view('Exam.create' , compact('exam'))->with('success', 'Course created successfully');
+        return redirect()->route('Exams.create', $exam->id);
 
     }
 
