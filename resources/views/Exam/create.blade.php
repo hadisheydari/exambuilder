@@ -42,7 +42,8 @@
 
                 <hr class="border-t border-gray-300">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 gap-4">
+
 
 
                 </div>
@@ -62,43 +63,6 @@
                         method="POST"
                     >
 
-                        <div class="flex flex-col col-span-2">
-                            <label for="input" class="block text-gray-700 font-medium mb-2 ">
-                                Question Text
-                            </label>
-                            <textarea
-                                id="questionText"
-                                name="questionText"
-                                class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
-                                placeholder="text"
-                            >
-
-                              </textarea>
-                        </div>
-                        <div class="flex col-span-2 justify-start">
-                            <div class="flex flex-col w-1/6 mx-4">
-                                <div class=" flex justify-around">
-                                    <label for="input" class="block text-gray-700 font-medium mb-2 ">
-                                        Key word
-                                    </label>
-                                    <button id="Close"
-                                            class="text-red-400 hover:text-red-600 transition text-2xl">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-
-                                <input
-                                    type="text"
-                                    id="key_word"
-                                    name="key_word"
-                                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
-                                    placeholder="word"
-                                >
-                            </div>
-                            <button type="button" class="w-1/6 bg-blue-900 text-white px-4 py-2 rounded-lg h-12 m-4">
-                                Add Key Word
-                            </button>
-                        </div>
 
                     </x-dynamic-form>
                 </div>
@@ -158,4 +122,6 @@
 
 @section('scripts')
     <script src="{{ asset('js/exam/examMethods.js') }}"></script>
+    <script src="{{ asset('js/exam/addKeyword.js') }}"></script>
+
 @endsection
