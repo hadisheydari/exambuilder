@@ -11,10 +11,11 @@ class BlankAnswer extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public bool $isShow = false,
+        public bool $isCreate = false,
+    )
+    {}
 
     /**
      * Get the view / contents that represent the component.

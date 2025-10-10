@@ -1,40 +1,34 @@
-const modalOverlay = document.getElementById('ModalOverlay');
-const modal = document.getElementById('Modal');
-const addBtn = document.getElementById('AddQuestion');
-const closeBtn = document.getElementById('Close');
-const form = document.getElementById('typeForm');
+// public/js/exam/examMethods.js
+document.addEventListener('alpine:init', () => {
+    Alpine.data('examApp', () => ({
+        isModalOpen: false,
+        questionContainer: '',
 
-function openModal() {
-    modalOverlay.classList.remove('hidden');
-    setTimeout(() => {
-        modalOverlay.classList.remove('opacity-0');
-        modal.classList.remove('opacity-0', 'scale-95');
-        modal.classList.add('opacity-100', 'scale-100');
-    }, 50);
-    addBtn.classList.add('hidden');
-}
+        openModal() {
+            this.isModalOpen = true;
+        },
 
-function closeModal() {
-    modalOverlay.classList.add('opacity-0');
-    modal.classList.add('opacity-0', 'scale-95');
-    modal.classList.remove('opacity-100', 'scale-100');
-    setTimeout(() => {
-        modalOverlay.classList.add('hidden');
-        addBtn.classList.remove('hidden');
-    }, 300);
-}
+        closeModal() {
+            this.isModalOpen = false;
+        },
 
+        selectType(type) {
+            if(type === 'true-false') {
+                this.questionContainer = `
+                <x-exam.true-false/>
+                `;
+            } else if(type === 'blank') {
+                this.questionContainer = `
+                <x-exam.blank-answer/>
 
+                `;
+            } else if(type === 'descriptive') {
+                this.questionContainer = `
+                <x-exam.descriptive/>
 
-addBtn.onclick = openModal;
-closeBtn.onclick = closeModal;
-modalOverlay.onclick = e => { if (e.target === modalOverlay) closeModal(); };
-
-
-function typeSelection($type) {
-    if($type === 'true-false'){
-        modalOverlay.classList.add('hidden');
-        addBtn.classList.remove('hidden');
-
-    }
-}
+                `;
+            }
+            this.closeModal();
+        }
+    }));
+});
