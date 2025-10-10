@@ -39,14 +39,14 @@
         </div>
     </div>
 @elseif($isCreate)
-    <div class="flex flex-col">
+    <div class="flex flex-col gap-4">
         <label for="input" class="block text-gray-700 font-medium mb-2 ">
             Question Text
         </label>
         <textarea
             id="questionText"
             name="questionText"
-            class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+            class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 m-6"
             placeholder="text"
         >
             </textarea>

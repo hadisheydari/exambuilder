@@ -1,8 +1,8 @@
-// public/js/exam/examMethods.js
 document.addEventListener('alpine:init', () => {
     Alpine.data('examApp', () => ({
         isModalOpen: false,
-        questionContainer: '',
+        showForm: false,
+        selectedType: '',
 
         openModal() {
             this.isModalOpen = true;
@@ -13,22 +13,15 @@ document.addEventListener('alpine:init', () => {
         },
 
         selectType(type) {
-            if(type === 'true-false') {
-                this.questionContainer = `
-                <x-exam.true-false/>
-                `;
-            } else if(type === 'blank') {
-                this.questionContainer = `
-                <x-exam.blank-answer/>
-
-                `;
-            } else if(type === 'descriptive') {
-                this.questionContainer = `
-                <x-exam.descriptive/>
-
-                `;
-            }
+            this.selectedType = type;
+            this.showForm = true;
             this.closeModal();
+        },
+
+        submitQuestion() {
+            // بعد از ثبت سوال، فرم هیدن شود
+            this.showForm = false;
+            this.selectedType = '';
         }
     }));
 });

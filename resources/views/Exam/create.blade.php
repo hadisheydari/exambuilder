@@ -49,29 +49,62 @@
                 </div>
 
 
-                <div>
-                    @php
-                        $fields = [
+                <!-- Dynamic Form Container -->
+                <div >
+                    <form x-show="showForm"
+                          @submit.prevent="submitQuestion"
+                          method="POST" enctype="multipart/form-data"
+                          class="p-4 border rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div x-show="selectedType === 'true-false'" class="w-full col-span-2 relative">
+                            <x-exam.true-false :isCreate="true"/>
 
-                        ];
-                        $button = ['type' => 'submit', 'text' => 'Create'];
-                    @endphp
-                    <x-dynamic-form
-                        :fields="$fields"
-                        :button="$button"
-                        action="{{ route('courses.store') }}"
-                        method="POST"
-                    >
-                        <div x-html="questionContainer"></div>
+                            <!-- Delete Button -->
+                            <button type="button"
+                                    @click="showForm = false; selectedType='';"
+                                    class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+                                X
+                            </button>
+                        </div>
 
+                        <!-- Fill in Blank Question -->
+                        <div x-show="selectedType === 'blank'" class="w-full col-span-2 relative">
+                            <x-exam.blank-answer :isCreate="true"/>
+                            <button type="button"
+                                    @click="showForm = false; selectedType='';"
+                                    class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+                                X
+                            </button>
+                        </div>
 
-                    </x-dynamic-form>
+                        <!-- Descriptive Question -->
+                        <div x-show="selectedType === 'descriptive'" class="w-full col-span-2 relative">
+                            <x-exam.descriptive :isCreate="true"/>
+                            <button type="button"
+                                    @click="showForm = false; selectedType='';"
+                                    class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+                                X
+                            </button>
+                        </div>
+                        <button type="submit"
+                                class="w-60 bg-blue-500 text-white px-4 py-2 rounded-lg h-12 m-4">
+                            Add Question
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
 
-        <div x-show="isModalOpen" x-transition class="fixed inset-0 bg-black/50 flex justify-center items-center pt-20 z-50">
-            <div @click.away="closeModal" class="bg-white w-11/12 max-w-lg rounded-2xl shadow-2xl p-6">
+        <div class="w-full h-35 grid place-items-center mt-6">
+            <button type="button" @click="openModal"
+                    class="fa fa-plus-circle text-4xl text-indigo-600 hover:text-indigo-800 transition">
+            </button>
+        </div>
+
+        <!-- Modal for Selecting Question Type -->
+        <div x-show="isModalOpen" x-transition
+             class="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+            <div @click.away="closeModal"
+                 class="bg-white w-11/12 max-w-lg rounded-2xl shadow-2xl p-6">
 
                 <!-- Header -->
                 <div class="flex justify-between items-center border-b px-6 py-4">
@@ -103,18 +136,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Form -->
-        <form id="typeForm" action="#" method="POST" enctype="multipart/form-data"
-              class="p-4 border rounded-lg shadow-lg grid place-items-center">
-            <div class="w-full h-35 grid place-items-center">
-                <button type="button" @click="openModal"
-                        class="fa fa-plus-circle text-4xl text-indigo-600 hover:text-indigo-800 transition">
-                </button>
-
-            </div>
-            @csrf
-        </form>
     </main>
 @endsection
 
