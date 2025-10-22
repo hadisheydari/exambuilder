@@ -49,16 +49,20 @@
                 </div>
 
 
-                <!-- Dynamic Form Container -->
                 <div >
                     <form x-show="showForm"
                           @submit.prevent="submitQuestion"
                           method="POST" enctype="multipart/form-data"
-                          class="p-4 border rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4">
+                          class="p-4 border rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4"
+                          action="{{route('Exams.questions' , ['exam' => $exam->id])}}"
+                    >
+                        <input type="hidden" name="type" x-model="selectedType">
+
+
+
                         <div x-show="selectedType === 'true-false'" class="w-full col-span-2 relative">
                             <x-exam.true-false :isCreate="true"/>
 
-                            <!-- Delete Button -->
                             <button type="button"
                                     @click="showForm = false; selectedType='';"
                                     class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
@@ -66,7 +70,6 @@
                             </button>
                         </div>
 
-                        <!-- Fill in Blank Question -->
                         <div x-show="selectedType === 'blank'" class="w-full col-span-2 relative">
                             <x-exam.blank-answer :isCreate="true"/>
                             <button type="button"
@@ -76,7 +79,6 @@
                             </button>
                         </div>
 
-                        <!-- Descriptive Question -->
                         <div x-show="selectedType === 'descriptive'" class="w-full col-span-2 relative">
                             <x-exam.descriptive :isCreate="true"/>
                             <button type="button"
@@ -100,13 +102,11 @@
             </button>
         </div>
 
-        <!-- Modal for Selecting Question Type -->
         <div x-show="isModalOpen" x-transition
              class="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
             <div @click.away="closeModal"
                  class="bg-white w-11/12 max-w-lg rounded-2xl shadow-2xl p-6">
 
-                <!-- Header -->
                 <div class="flex justify-between items-center border-b px-6 py-4">
                     <h3 class="text-xl font-semibold text-gray-800">Choose Question Type</h3>
                     <button @click="closeModal" class="text-gray-400 hover:text-gray-600 text-2xl">
@@ -114,7 +114,6 @@
                     </button>
                 </div>
 
-                <!-- Content -->
                 <div class="grid grid-cols-3 gap-4 p-6">
                     <button @click="selectType('true-false')"
                             class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 shadow-sm hover:bg-green-50 hover:shadow-md transition">

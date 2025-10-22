@@ -16,7 +16,7 @@
         placeholder="write the answer"
     ></textarea>
 @elseif($isCreate)
-    <div class="flex flex-col col-span-2">
+    <div class="flex flex-col col-span-2 mt-3">
         <label for="questionText" class="block text-gray-700 font-medium mb-2">
             Question Text
         </label>

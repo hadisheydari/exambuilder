@@ -39,8 +39,8 @@
 
     </div>
 @elseif($isCreate)
-    <div class=" flex justify-around  col-span-2 ">
-        <div class="flex flex-col w-4/6 mx-4">
+    <div class=" flex justify-around  col-span-2 mt-3">
+        <div class="flex flex-col w-4/6 mx-4 ">
             <label for="input" class="block text-gray-700 font-medium mb-2 ">
                 Question Text
             </label>
