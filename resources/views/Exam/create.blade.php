@@ -50,12 +50,16 @@
 
 
                 <div >
-                    <form x-show="showForm"
-                          @submit.prevent="submitQuestion"
-                          method="POST" enctype="multipart/form-data"
-                          class="p-4 border rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4"
-                          action="{{route('Exams.questions' , ['exam' => $exam->id])}}"
+                    <form
+                        x-ref="form"
+                        x-show="showForm"
+                        @submit.prevent="submitQuestion"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="p-4 border rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4"
+                        action="{{ route('Exams.questions', ['exam' => $exam->id]) }}"
                     >
+                        @csrf
                         <input type="hidden" name="type" x-model="selectedType">
 
 
@@ -140,6 +144,7 @@
 
 @section('scripts')
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="{{ asset('js/exam/addQuestion.js') }}"></script>
 
     <script src="{{ asset('js/exam/examMethods.js') }}"></script>
     <script src="{{ asset('js/exam/addKeyword.js') }}"></script>

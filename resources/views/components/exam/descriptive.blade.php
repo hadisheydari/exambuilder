@@ -16,16 +16,36 @@
         placeholder="write the answer"
     ></textarea>
 @elseif($isCreate)
-    <div class="flex flex-col col-span-2 mt-3">
-        <label for="questionText" class="block text-gray-700 font-medium mb-2">
-            Question Text
-        </label>
-        <textarea
-            id="questionText"
-            name="questionText"
-            class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 {{$field['hidden'] ?? false ? 'hidden' : ''}}"
-            placeholder="Enter the question text"
-        ></textarea>
+    <div class="flex  col-span-2 mt-3 justify-around">
+        <div class="flex flex-col w-3/4 mx-4">
+
+                <label for="questionText" class="block text-gray-700 font-medium mb-2">
+                    Question Text
+                </label>
+                <textarea
+                    id="questionText"
+                    name="questionText"
+                    class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                    placeholder="Enter the question text"
+                ></textarea>
+            </div>
+        <div class="flex flex-col w-1/4 mx-4 mt-3">
+
+        <label for="input" class="block text-gray-700 font-medium mb-2 ">
+                    Question Score
+                </label>
+                <input
+                    type="number"
+                    id="questionText"
+                    name="questionText"
+                    class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
+                    placeholder="score"
+                    step="2"
+                >
+            </div>
+
+
+
     </div>
 
     <div class="flex flex-col col-span-2 mt-4">
