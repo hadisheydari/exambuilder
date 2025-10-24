@@ -8,6 +8,7 @@ use App\Models\question_options;
 use App\Models\keywords;
 use App\Http\Requests\StorequestionsRequest;
 use App\Http\Requests\UpdatequestionsRequest;
+use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
 {
@@ -30,10 +31,14 @@ class QuestionsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorequestionsRequest $request, Exam $exam)
+    public function store(Request $request, Exam $exam)
     {
-        dd($request ,  $exam);
+        return response()->json([
+            'exam' => $exam,
+            'inputs' => $request->all(),
+        ]);
     }
+
 
     /**
      * Display the specified resource.

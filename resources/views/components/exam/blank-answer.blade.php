@@ -17,13 +17,13 @@
         </div>
 
         <div class="flex flex-col w-2/6 mx-4">
-            <label for="blank-answer" class="block text-gray-700 font-semibold mb-2">
+            <label for="value" class="block text-gray-700 font-semibold mb-2">
                 Blank Answer
             </label>
             <input
                 type="text"
-                id="blank-answer"
-                name="blank-answer"
+                id="value"
+                name="value"
                 class="px-4 py-2 border border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 {{$field['hidden'] ?? false ? 'hidden' : ''}}"
                 placeholder="Type your answer..."
             >
@@ -60,8 +60,8 @@
             </label>
             <input
                 type="text"
-                id="blank-answer"
-                name="blank-answer"
+                id="value"
+                name="value"
                 class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
                 placeholder="Blank Answer"
             >
@@ -75,7 +75,7 @@
             </label>
             <textarea
                 id="questionText"
-                name="questionText"
+                name="questionText2"
                 class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
                 placeholder="text"
             >
@@ -89,8 +89,8 @@
             </label>
             <input
                 type="number"
-                id="questionText"
-                name="questionText"
+                id="score"
+                name="score"
                 class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
                 placeholder="score"
                 step="2"
@@ -98,5 +98,8 @@
         </div>
 
     </div>
+
+
+
 @endif
 

@@ -50,6 +50,9 @@ document.addEventListener('alpine:init', () => {
                     body: formData
                 });
 
+                const rawText = await response.text();
+                console.log('📦 Raw response text:', rawText);
+
                 console.log('Response status:', response.status);
 
                 if (!response.ok) throw new Error('Request failed: ' + response.status);

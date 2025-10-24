@@ -36,8 +36,8 @@
                 </label>
                 <input
                     type="number"
-                    id="questionText"
-                    name="questionText"
+                    id="score"
+                    name="score"
                     class="  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  {{$field['hidden'] ?? false ? 'hidden' : ''}}"
                     placeholder="score"
                     step="2"
@@ -79,4 +79,7 @@
             Add Key Word
         </button>
     </div>
+
+
+
 @endif

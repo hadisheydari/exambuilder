@@ -25,6 +25,7 @@ class StorequestionsRequest extends FormRequest
             'exams_id'=> 'required|exists:exams,id',
             'type'=> 'required|in:true_false, fill_blank ,descriptive',
             'questionText'=> 'required|string',
+            'questionText2'=> 'required|string',
             'score'=>'required|numeric',
             'order'=>'required|numeric',
             'options'=>'nullable|array',

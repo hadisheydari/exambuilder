@@ -144,8 +144,6 @@
 
 @section('scripts')
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="{{ asset('js/exam/addQuestion.js') }}"></script>
-
     <script src="{{ asset('js/exam/examMethods.js') }}"></script>
     <script src="{{ asset('js/exam/addKeyword.js') }}"></script>
 
