@@ -11,9 +11,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @livewireStyles
 
 
 </head>
+
 <body class="bg-blue-50 text-gray-700">
 @if (session('success'))
     <script>
@@ -52,6 +54,7 @@
 
 </div>
 
+@livewireScripts
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
