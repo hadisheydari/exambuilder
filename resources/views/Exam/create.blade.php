@@ -30,12 +30,12 @@
                     <div class="md:col-span-3 flex justify-center gap-12 ">
                         <h2 class="text-lg font-semibold text-blue-700 mr-10 mt-5">
                             Left Questions:
-                            <span class="font-normal text-gray-700">{{ $exam->Max_Questions - ($q?->sum('score') ?? 1) }}</span>
+                            <span class="font-normal text-gray-700">{{ $exam->Max_Questions - ($q?->sum('order') ?? 1) }}</span>
                         </h2>
 
                         <h2 class="text-lg font-semibold text-blue-700 ml-10 mt-5">
-                            Another Info:
-                            <span class="font-normal text-gray-700">19.5</span>
+                            Left Score:
+                            <span class="font-normal text-gray-700">{{ $exam->Max_Questions - ($q?->sum('score') ?? 1) }}</span>
                         </h2>
                     </div>
                 </div>
@@ -44,8 +44,15 @@
 
                 <div class="grid grid-cols-1 gap-4">
 
-
-
+                    @foreach($question as $q)
+                        @if($q->type === 'descriptive')
+                            <x-exam.descriptive :isShow="true" :question="$q"/>
+                        @elseif($q->type === 'true-false')
+                            <x-exam.true-false :isShow="true" :question="$q"/>
+                        @elseif($q->type === 'blank')
+                            <x-exam.blank-answer :isShow="true" :question="$q"/>
+                        @endif
+                    @endforeach
                 </div>
 
 
