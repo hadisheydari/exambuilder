@@ -11,7 +11,7 @@ class questions extends Model
     protected $table = 'questions';
 
     protected $fillable = [
-        'exams_id',
+        'exam_id',
         'type',
         'questionText',
         'questionText2',
@@ -19,18 +19,18 @@ class questions extends Model
         'order',
     ];
 
-    public function exams()
+    public function exam()
     {
         return $this->belongsTo(Exam::class);
     }
 
-    public function qestion_options()
+    public function options()
     {
-        return $this->hasMany(question_options::class);
+        return $this->hasMany(QuestionOption::class);
     }
 
     public function keywords()
     {
-        return $this->hasMany(keywords::class);
+        return $this->hasMany(KeyWord::class);
     }
 }
