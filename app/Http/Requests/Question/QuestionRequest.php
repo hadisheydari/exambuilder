@@ -30,9 +30,9 @@ class QuestionRequest extends FormRequest
             'order' => 'required|numeric|min:1',
 
             'options' => 'nullable|array',
-            'options.*.type' => 'required|in:true_false,blank_answer',
-            'options.*.value' => 'nullable|string',
-            'options.*.is_correct' => 'nullable|boolean',
+            'options.*.type' => 'required_if:type,true_false,blank-answer|in:true_false,blank-answer',
+            'options.*.value' => 'required_if:type,blank-answer|string',
+            'options.*.is_correct' => 'required_if:type,true_false|boolean',
 
             'keywords' => 'nullable|array',
             'keywords.*' => 'string',

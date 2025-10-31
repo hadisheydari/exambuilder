@@ -26,7 +26,7 @@ class questions extends Model
 
     public function options()
     {
-        return $this->hasMany(QuestionOption::class);
+        return $this->hasOne(QuestionOption::class);
     }
 
     public function keywords()
